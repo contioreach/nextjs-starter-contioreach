@@ -11,7 +11,7 @@ cp .env.example .env.local   # add your API key
 npm run dev
 ```
 
-> Looking for another stack? See the [Nuxt](https://github.com/contioreach/nuxtjs-starter-contioreach) example.
+> Looking for another stack? See the [Nuxt](https://github.com/contioreach/nuxtjs-starter-contioreach) and [Astro](https://github.com/contioreach/astro-starter-contioreach) examples.
 
 ---
 
