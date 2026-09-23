@@ -54,7 +54,7 @@ export default async function Home() {
               $
             </span>
             <code className="overflow-x-auto font-mono text-sm whitespace-nowrap text-zinc-200">
-              npx degit contioreach/nextjs-headless-cms-example my-blog
+              npx degit contioreach/nextjs-starter-contioreach my-blog
             </code>
           </div>
 

@@ -68,5 +68,5 @@ export const NOINDEX = process.env.NEXT_PUBLIC_ALLOW_INDEXING !== "true";
 export const CONTACT_URL = "https://contioreach.com/contact-us";
 
 // This repo is a public example, so the demo UI links back to the source.
-export const REPO_URL = "https://github.com/contioreach/nextjs-headless-cms-example";
+export const REPO_URL = "https://github.com/contioreach/nextjs-starter-contioreach";
 export const CMS_SITE_URL = "https://contioreach.com";

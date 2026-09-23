@@ -5,13 +5,13 @@ A complete, production-shaped blog built with **Next.js 16 (App Router)** and a 
 Not a toy. It ships the things a real content site actually needs and most examples skip: incremental static regeneration, an on-demand revalidation webhook, category archives, pagination, a table of contents generated from the article body, full SEO metadata, JSON-LD, and a sitemap.
 
 ```bash
-npx degit contioreach/nextjs-headless-cms-example my-blog
+npx degit contioreach/nextjs-starter-contioreach my-blog
 cd my-blog && npm install
 cp .env.example .env.local   # add your API key
 npm run dev
 ```
 
-> Looking for another stack? See [Astro](https://github.com/contioreach/astro-headless-cms-example), [Nuxt](https://github.com/contioreach/nuxt-headless-cms-example) and [SvelteKit](https://github.com/contioreach/sveltekit-headless-cms-example) examples.
+> Looking for another stack? See the [Nuxt](https://github.com/contioreach/nuxtjs-starter-contioreach) example.
 
 ---
 

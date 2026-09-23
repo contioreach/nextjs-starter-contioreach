@@ -1,13 +1,13 @@
 {
-  "name": "nextjs-headless-cms-example",
+  "name": "nextjs-starter-contioreach",
   "version": "1.0.0",
   "private": false,
   "description": "A production-ready Next.js (App Router) blog powered by the ContioReach headless CMS — ISR, on-demand revalidation webhooks, SEO metadata and JSON-LD.",
   "license": "MIT",
-  "homepage": "https://github.com/contioreach/nextjs-headless-cms-example#readme",
+  "homepage": "https://github.com/contioreach/nextjs-starter-contioreach#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/contioreach/nextjs-headless-cms-example.git"
+    "url": "https://github.com/contioreach/nextjs-starter-contioreach.git"
   },
   "keywords": [
     "nextjs",
