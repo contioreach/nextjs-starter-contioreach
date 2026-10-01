@@ -59,17 +59,18 @@ export async function generateMetadata({ params }) {
   }
 
   return buildMetadata({
-    title: `${post.title} | ContioReach`,
+    title: post.metaTitle !== post.title ? post.metaTitle : `${post.title} | ContioReach`,
     description: post.description || post.excerpt,
     path: `/blog/${post.slug}`,
     image: post.coverImage || undefined,
-    alt: post.title,
+    alt: post.coverImageAlt,
     type: "article",
     publishedTime: post.publishedAt,
     modifiedTime: post.updatedAt,
     keywords: [
       post.category?.toLowerCase(),
       post.primaryKeyword,
+      ...(post.secondaryKeywords || []),
       ...(post.tags?.map((tag) => tag.name?.toLowerCase()) || []),
       "headless cms",
       "content marketing",

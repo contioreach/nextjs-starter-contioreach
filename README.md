@@ -169,8 +169,9 @@ The CMS boundary is two files. To swap in Contentful, Sanity, Strapi or WordPres
 2. Update `transformBlogForDisplay()` to map that CMS's field names onto this shape:
 
 ```js
-{ id, slug, title, excerpt, description, coverImage, content,
-  publishedAt, updatedAt, readingTime, authors, tags, categories }
+{ id, slug, title, metaTitle, excerpt, description, coverImage, coverImageAlt,
+  content, publishedAt, updatedAt, primaryKeyword, secondaryKeywords,
+  readingTime, authors, tags, categories }
 ```
 
 Nothing else in the app knows where content comes from.

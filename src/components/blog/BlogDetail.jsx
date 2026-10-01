@@ -163,7 +163,7 @@ export function BlogDetail({ post, relatedBlogs = [] }) {
           <div className="relative -mt-0 aspect-[16/8] overflow-hidden rounded-3xl border border-white/10 sm:-mt-10">
             <Image
               src={post.coverImage}
-              alt={post.title}
+              alt={post.coverImageAlt || post.title}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 1024px"

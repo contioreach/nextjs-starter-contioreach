@@ -33,6 +33,6 @@ export function blogPostingSchema(post) {
       name: "ContioReach",
       url: SITE_URL,
     },
-    keywords: [post.primaryKeyword, ...(post.tags?.map((tag) => tag.name) || [])].filter(Boolean).join(", ") || undefined,
+    keywords: [post.primaryKeyword, ...(post.secondaryKeywords || []), ...(post.tags?.map((tag) => tag.name) || [])].filter(Boolean).join(", ") || undefined,
   };
 }

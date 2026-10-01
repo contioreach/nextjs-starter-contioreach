@@ -29,7 +29,7 @@ export function BlogCard({ post, featured = false, priority = false }) {
         {post.coverImage ? (
           <Image
             src={post.coverImage}
-            alt={post.title}
+            alt={post.coverImageAlt || post.title}
             fill
             priority={priority}
             sizes={featured ? "(max-width: 1024px) 100vw, 52vw" : "(max-width: 768px) 100vw, 33vw"}
