@@ -1,4 +1,4 @@
-import { API_HEADERS, BLOG_API_CONFIG, CACHE_CONFIG } from "./const";
+import { API_HEADERS, BLOG_API_CONFIG, CACHE_CONFIG, DEMO_API_KEY } from "./const";
 
 /* Every read goes through here. In Next 16 `fetch` is uncached by default, so
    `cache: "force-cache"` is explicit; the tags are what the publish webhook
@@ -118,6 +118,28 @@ export function transformBlogForDisplay(blog) {
 
 export function transformBlogsForDisplay(blogs) {
   return (blogs || []).map(transformBlogForDisplay);
+}
+
+/* What the demo banner needs to know about CMS_API_KEY, and nothing more — the
+   key itself never leaves the server. "demo" while the demo key is set,
+   "invalid" when the CMS rejects the key, otherwise null. A network failure is
+   not the key's fault, so it reads as null too. */
+export async function getApiKeyStatus() {
+  if (BLOG_API_CONFIG.API_KEY === DEMO_API_KEY) return "demo";
+
+  try {
+    const response = await fetch(
+      `${BLOG_API_CONFIG.BASE_URL}${BLOG_API_CONFIG.ENDPOINTS.CATEGORIES}?limit=1`,
+      {
+        headers: API_HEADERS,
+        cache: "force-cache",
+        next: { revalidate: CACHE_CONFIG.REVALIDATE_TIME, tags: [CACHE_CONFIG.TAGS.CATEGORIES] },
+      },
+    );
+    return response.status === 401 ? "invalid" : null;
+  } catch {
+    return null;
+  }
 }
 
 /* ---- helpers for sitemaps / static params ---- */

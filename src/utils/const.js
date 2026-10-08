@@ -32,11 +32,16 @@ export const BLOG_API_CONFIG = {
   },
 };
 
-// Shared secret the ContioReach app sends with its publish webhook.
-export const REVALIDATION_SECRET = serverOnly(
-  "REVALIDATION_SECRET",
-  process.env.REVALIDATION_SECRET,
-);
+/* Shared secret the ContioReach app sends with its publish webhook. Optional
+   until you set the webhook up — while it is empty the route rejects every
+   call, so the site still runs on a fresh clone. */
+export const REVALIDATION_SECRET = process.env.REVALIDATION_SECRET || "";
+
+/* The read-only key of the ContioReach demo workspace, and the default in
+   .env.example — so a fresh clone renders real posts before you have an
+   account. While it is the key in use, every page shows the demo banner
+   (components/layout/DemoBanner.jsx). Replacing it is the only switch. */
+export const DEMO_API_KEY = "cms_a77631bccba461401bf5fd25b0402acd163623af5a5fc0ca";
 
 export const API_HEADERS = {
   "Content-Type": "application/json",

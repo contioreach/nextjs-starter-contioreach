@@ -5,13 +5,35 @@ A complete, production-shaped blog built with **Next.js 16 (App Router)** and a 
 Not a toy. It ships the things a real content site actually needs and most examples skip: incremental static regeneration, an on-demand revalidation webhook, category archives, pagination, a table of contents generated from the article body, full SEO metadata, JSON-LD, and a sitemap.
 
 ```bash
+npx create-contioreach-blog my-blog --framework next
+cd my-blog
+npm run dev
+```
+
+It runs on ContioReach's demo content straight away — [switch to your own posts](#use-your-own-content) whenever you are ready. Or set it up by hand:
+
+```bash
 npx degit contioreach/nextjs-starter-contioreach my-blog
 cd my-blog && npm install
-cp .env.example .env.local   # add your API key
+cp .env.example .env.local   # demo key included
 npm run dev
 ```
 
 > Looking for another stack? See the [Nuxt](https://github.com/contioreach/nuxtjs-starter-contioreach), [Astro](https://github.com/contioreach/astro-starter-contioreach), [SvelteKit](https://github.com/contioreach/sveltekit-starter-contioreach), [Remix](https://github.com/contioreach/remix-starter-contioreach), [Gatsby](https://github.com/contioreach/gatsby-starter-contioreach), [React](https://github.com/contioreach/react-starter-contioreach) and [Vue](https://github.com/contioreach/vue-starter-contioreach) examples.
+
+---
+
+## Use your own content
+
+The starter ships with the read-only key of the ContioReach demo workspace, so it renders real posts the moment you run it — with a banner across the top saying so. The banner shows whenever `CMS_API_KEY` is the demo key, including on a deployed site, and goes away by itself once you switch. Nothing in the code changes.
+
+1. Create a free account at [app.contioreach.com/signup](https://app.contioreach.com/signup?ref=cli&fw=next).
+2. In the dashboard, open **Developer Settings → API Keys** and copy your key.
+3. Paste it into `.env.local` as `CMS_API_KEY`, in place of the demo key.
+4. Restart the dev server. The banner disappears and the blog shows your own posts.
+5. Once the site is deployed, open **Developer Settings → Webhook Integration**, enter `https://your-site.com/api/revalidate/all`, click **Generate** and save. Set the same value as `REVALIDATION_SECRET` in your host's environment. Publishing now updates the site without a redeploy.
+
+If ContioReach rejects the key, the banner turns into an "Invalid API key" notice instead — usually a key that was only partly copied.
 
 ---
 
@@ -50,7 +72,7 @@ NEXT_PUBLIC_SIGNUP_URL=https://app.contioreach.com/signup
 NEXT_PUBLIC_LOGIN_URL=https://app.contioreach.com/login
 ```
 
-Get `CMS_API_KEY` and `REVALIDATION_SECRET` from your ContioReach workspace settings (free plan is enough). Every variable is read in exactly one place — [`src/utils/const.js`](src/utils/const.js) — which throws a named error at build time if one is missing, rather than shipping a site that quietly 401s.
+Get `CMS_API_KEY` and `REVALIDATION_SECRET` from your ContioReach workspace settings (free plan is enough). Every variable is read in exactly one place — [`src/utils/const.js`](src/utils/const.js) — which throws a named error at build time if one is missing, rather than shipping a site that quietly 401s. `REVALIDATION_SECRET` is the one exception to "required": it can stay empty until you set up the webhook, and the webhook rejects every call while it is.
 
 `CMS_API_KEY` and `REVALIDATION_SECRET` are server-only and never reach the browser bundle.
 

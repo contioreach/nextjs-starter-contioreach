@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { DemoBanner } from "@/components/layout/DemoBanner";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { getApiKeyStatus } from "@/utils/api";
 import { NOINDEX, SITE_URL } from "@/utils/const";
 import "./globals.css";
 
@@ -22,10 +24,13 @@ export const metadata = {
     : { index: true, follow: true },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const keyStatus = await getApiKeyStatus();
+
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-zinc-950 font-sans text-zinc-100 selection:bg-fuchsia-500/30">
+        <DemoBanner status={keyStatus} />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
